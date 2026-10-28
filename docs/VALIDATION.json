@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-28",
+  "images": 300,
+  "predictions": 463,
+  "txt_byte_identical_to_historical_submission": 278,
+  "txt_byte_mismatches": 22,
+  "zip_members": 300,
+  "zip_crc_pass": true,
+  "python_files_syntax_checked": 27,
+  "training_rerun": false,
+  "onnx_validated": false,
+  "github_published": false,
+  "per_image_prediction_counts_equal": true,
+  "max_coordinate_difference_pixels": 4.6351000037248014e-05,
+  "max_score_difference_serialized": 0.0
+}

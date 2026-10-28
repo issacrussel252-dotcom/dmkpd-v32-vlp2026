@@ -1,0 +1,5 @@
+# Verified environment. Install matching CUDA-enabled torch/torchvision builds.
+torch==2.11.0
+torchvision==0.26.0
+numpy==2.5.2
+Pillow==12.3.0

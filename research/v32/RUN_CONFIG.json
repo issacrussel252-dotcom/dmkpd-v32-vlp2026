@@ -1,0 +1,396 @@
+{
+  "experiment": "DMKPD V32 foreground residual SmoothL1 scale paired comparison",
+  "frozen_before_training_and_B_evaluation": true,
+  "fixed_main_epoch": 3,
+  "seeds": [
+    20261031,
+    20261101
+  ],
+  "arms": {
+    "A": {
+      "foreground": "mean SmoothL1(pred-target,beta=1.0)",
+      "alpha": 1.0
+    },
+    "B": {
+      "foreground": "alpha * mean SmoothL1(pred-target,beta=0.01)",
+      "alpha": 0.07782134721914898
+    },
+    "both": {
+      "background": "0.1 * mean SmoothL1(pred,beta=1.0)",
+      "sampling": "V31 fixed per-image 1:1 cap; same saved order within seed"
+    }
+  },
+  "alpha_calibration": {
+    "foreground_candidate_rows": 480301,
+    "foreground_coordinate_components": 3842408,
+    "abs_target_median": 0.008464600425213575,
+    "abs_target_fraction_gt_0_05": 0.06516382435181271,
+    "beta1_output_gradient_rms": 0.05982587687005301,
+    "beta0_01_output_gradient_rms_unscaled": 0.7687592030703377,
+    "alpha": 0.07782134721914898,
+    "after_scale_beta0_01_rms": 0.05982587687005301,
+    "rms_abs_error": 0.05992587074799674,
+    "top_1pct_abs_error_gradient_share": 0.2333447789213764,
+    "top_1pct_component_count": 38425,
+    "qualification": "candidate coordinate components, not independent GTs or parameter gradients",
+    "formula": "RMS(sign(e)*min(abs(e)/1,1))/RMS(sign(e)*min(abs(e)/0.01,1)) at pred=0"
+  },
+  "training": {
+    "epochs": 3,
+    "optimizer": "AdamW",
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "microbatch": 256,
+    "gradient_accumulation_microbatches": 2,
+    "effective_batch_max": 512,
+    "selected_rows_per_epoch": {
+      "20261031": {
+        "1": 685947,
+        "2": 685947,
+        "3": 685947
+      },
+      "20261101": {
+        "1": 685947,
+        "2": 685947,
+        "3": 685947
+      }
+    },
+    "augmentation": "none",
+    "head_parameters": 534216,
+    "output": "zero initialized",
+    "residual_limit": 0.05
+  },
+  "model_inputs": {
+    "detector_path": "<PROJECT_ROOT>\\DMKPD-V9-20261009\\train\\A_main\\epoch_12.pt",
+    "detector_sha256": "89cfc3b044db37c4232cbc6f9e839b0b40bbe3fe2beb51a2e250cc3e47633a88",
+    "quality_head_path": "<PROJECT_ROOT>\\DMKPD-V10-20261010\\train\\geometry_seed20261010\\epoch_10.pt",
+    "quality_head_sha256": "5fa3bc7156c419799db5c7592955a28e05ca8602e9a4cfb7fdb2b1b755c67abf",
+    "normalization": "FrozenBatchNorm2d",
+    "manifest": "<PROJECT_ROOT>\\07_第5版_R6正式复跑_20261006\\inputs\\split_manifest_r2_internal.csv",
+    "manifest_sha256": "c4a5928dc1a70fcdebef9188031fa45a5df2908b44014ac36171cf025239bb19",
+    "train_fit_cache_root": "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\cache\\train_fit",
+    "dev_cache_root": "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\cache\\dev",
+    "cache_input_hashes": {
+      "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\cache\\train_fit\\features.npy": "c7101bd50b2cf83e2ecd30440bfe1a3c99d7137eeed60a05e566f07f5ee79355",
+      "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\cache\\train_fit\\group.npy": "d427f0b079f4d731fb347ba2b245d7b7fe923315ca6acd5ba8f8cdf0561738d4",
+      "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\cache\\train_fit\\target_norm.npy": "d7a14881821814bc768b3a00002b1d146830713b9cfe72731626bd9dd084d32f",
+      "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\cache\\train_fit\\corner_norm.npy": "dc864bee0f296afff3d464622396b863b89efb5c1e38169c8f4f5ed1413ba0a4",
+      "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\cache\\train_fit\\rois_resized.npy": "98a1d2cbb5d3f645e3aa5aab8ad094bf29e53d7c1a4be6afd593590ded85b12c",
+      "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\cache\\train_fit\\candidate_count.npy": "3cc696aa869d53174c909f860f3de3584896e20d9b19c55c80536970a50ab4e5",
+      "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\cache\\train_fit\\matched_small.npy": "62f4a4df4f66265fa33e6b236b7cc1978c5b9e4bc40e80e806061cbd1aeaec7f",
+      "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\cache\\train_fit\\matched_tiny.npy": "e565d3e851bb5837beebee3e52f9859ea81b48c904bf7251e01050cbf8f140a8",
+      "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\cache\\train_fit\\collection_complete.json": "1f5118d0f60112b50db6b4ad5d3d5b1810d00f180a040bd7136360dd1f105d35"
+    },
+    "dev_partition": {
+      "images": 859,
+      "gt": 1981
+    },
+    "feature_reextraction": false
+  },
+  "initialization": {
+    "20261031": {
+      "path": "<PROJECT_ROOT>\\DMKPD-V32-V31残差损失尺度\\initialization\\seed_20261031_initial.pt",
+      "sha256": "6b85fa7248a48671a9710910cc3fc880c2d1a1863c561e591c6fab191ba0af57",
+      "state_tensor_shapes": {
+        "fc1.weight": [
+          128,
+          4104
+        ],
+        "fc1.bias": [
+          128
+        ],
+        "fc2.weight": [
+          64,
+          128
+        ],
+        "fc2.bias": [
+          64
+        ],
+        "out.weight": [
+          8,
+          64
+        ],
+        "out.bias": [
+          8
+        ]
+      },
+      "parameter_count": 534216,
+      "output_zero_initialized": true
+    },
+    "20261101": {
+      "path": "<PROJECT_ROOT>\\DMKPD-V32-V31残差损失尺度\\initialization\\seed_20261101_initial.pt",
+      "sha256": "538f6968121d7227b598a0825bf6748721f752446ca843aa584fac0cc8f67c82",
+      "state_tensor_shapes": {
+        "fc1.weight": [
+          128,
+          4104
+        ],
+        "fc1.bias": [
+          128
+        ],
+        "fc2.weight": [
+          64,
+          128
+        ],
+        "fc2.bias": [
+          64
+        ],
+        "out.weight": [
+          8,
+          64
+        ],
+        "out.bias": [
+          8
+        ]
+      },
+      "parameter_count": 534216,
+      "output_zero_initialized": true
+    }
+  },
+  "sampling_manifest": {
+    "20261031": {
+      "1": {
+        "epoch": 1,
+        "seed": 20271038,
+        "num_rows": 685947,
+        "coverage": {
+          "images_seen": 7731,
+          "images_with_foreground": 7730,
+          "images_with_background": 6979,
+          "foreground_selected": 480301,
+          "background_pool": 259286,
+          "background_selected": 205646,
+          "ignored_not_selected": 87153
+        },
+        "sample_order_path": "<PROJECT_ROOT>\\DMKPD-V32-V31残差损失尺度\\sampling_orders\\seed_20261031\\epoch_01.npy",
+        "sample_order_sha256": "692eb3e275564ef164e7e9194c30f495a8c6b93132e4e77d2d9984d34b9c853b",
+        "source_v31_order_exact_match": true,
+        "sampler_rng_state": {
+          "bit_generator": "PCG64",
+          "state": {
+            "state": 304828805222165486258049169423003852909,
+            "inc": 75980579114508991885974057322861037453
+          },
+          "has_uint32": 0,
+          "uinteger": 1447969717
+        }
+      },
+      "2": {
+        "epoch": 2,
+        "seed": 20281045,
+        "num_rows": 685947,
+        "coverage": {
+          "images_seen": 7731,
+          "images_with_foreground": 7730,
+          "images_with_background": 6979,
+          "foreground_selected": 480301,
+          "background_pool": 259286,
+          "background_selected": 205646,
+          "ignored_not_selected": 87153
+        },
+        "sample_order_path": "<PROJECT_ROOT>\\DMKPD-V32-V31残差损失尺度\\sampling_orders\\seed_20261031\\epoch_02.npy",
+        "sample_order_sha256": "ea0c61c2354e3969629ac4608a6df74d3fe7639151a89dc7d5ef8ef539ce8390",
+        "source_v31_order_exact_match": true,
+        "sampler_rng_state": {
+          "bit_generator": "PCG64",
+          "state": {
+            "state": 31475914422161009135439307624736948472,
+            "inc": 277235726733623247535664128315229125029
+          },
+          "has_uint32": 0,
+          "uinteger": 89895113
+        }
+      },
+      "3": {
+        "epoch": 3,
+        "seed": 20291052,
+        "num_rows": 685947,
+        "coverage": {
+          "images_seen": 7731,
+          "images_with_foreground": 7730,
+          "images_with_background": 6979,
+          "foreground_selected": 480301,
+          "background_pool": 259286,
+          "background_selected": 205646,
+          "ignored_not_selected": 87153
+        },
+        "sample_order_path": "<PROJECT_ROOT>\\DMKPD-V32-V31残差损失尺度\\sampling_orders\\seed_20261031\\epoch_03.npy",
+        "sample_order_sha256": "49cd188d8287fb0b1f039e217ecea38fa7defe39374b0dd62e06b313fe8e2fe2",
+        "source_v31_order_exact_match": true,
+        "sampler_rng_state": {
+          "bit_generator": "PCG64",
+          "state": {
+            "state": 301345911435959058718257821030891421631,
+            "inc": 242181009869505138607982859515835362445
+          },
+          "has_uint32": 1,
+          "uinteger": 2897127229
+        }
+      }
+    },
+    "20261101": {
+      "1": {
+        "epoch": 1,
+        "seed": 20271108,
+        "num_rows": 685947,
+        "coverage": {
+          "images_seen": 7731,
+          "images_with_foreground": 7730,
+          "images_with_background": 6979,
+          "foreground_selected": 480301,
+          "background_pool": 259286,
+          "background_selected": 205646,
+          "ignored_not_selected": 87153
+        },
+        "sample_order_path": "<PROJECT_ROOT>\\DMKPD-V32-V31残差损失尺度\\sampling_orders\\seed_20261101\\epoch_01.npy",
+        "sample_order_sha256": "231db06b3acfc25adff0290f8f15d6d4e3d355a8e687f4179ff68c50031419d6",
+        "source_v31_order_exact_match": null,
+        "sampler_rng_state": {
+          "bit_generator": "PCG64",
+          "state": {
+            "state": 328947913518669714465843147235459860519,
+            "inc": 93132368329173534012907793983740710471
+          },
+          "has_uint32": 0,
+          "uinteger": 2769295421
+        }
+      },
+      "2": {
+        "epoch": 2,
+        "seed": 20281115,
+        "num_rows": 685947,
+        "coverage": {
+          "images_seen": 7731,
+          "images_with_foreground": 7730,
+          "images_with_background": 6979,
+          "foreground_selected": 480301,
+          "background_pool": 259286,
+          "background_selected": 205646,
+          "ignored_not_selected": 87153
+        },
+        "sample_order_path": "<PROJECT_ROOT>\\DMKPD-V32-V31残差损失尺度\\sampling_orders\\seed_20261101\\epoch_02.npy",
+        "sample_order_sha256": "e78374614da21171937b0fa0d4fcb2066f8d4c5366aa0ae03816af5f0679cb5b",
+        "source_v31_order_exact_match": null,
+        "sampler_rng_state": {
+          "bit_generator": "PCG64",
+          "state": {
+            "state": 50874570634470667786447146293919181661,
+            "inc": 56618137805869064491435892150828478525
+          },
+          "has_uint32": 0,
+          "uinteger": 3962622039
+        }
+      },
+      "3": {
+        "epoch": 3,
+        "seed": 20291122,
+        "num_rows": 685947,
+        "coverage": {
+          "images_seen": 7731,
+          "images_with_foreground": 7730,
+          "images_with_background": 6979,
+          "foreground_selected": 480301,
+          "background_pool": 259286,
+          "background_selected": 205646,
+          "ignored_not_selected": 87153
+        },
+        "sample_order_path": "<PROJECT_ROOT>\\DMKPD-V32-V31残差损失尺度\\sampling_orders\\seed_20261101\\epoch_03.npy",
+        "sample_order_sha256": "92ef55158adfab131e1e6b5eda5cad6f440c1638d1c26affb2b0fda4cf54a78a",
+        "source_v31_order_exact_match": null,
+        "sampler_rng_state": {
+          "bit_generator": "PCG64",
+          "state": {
+            "state": 151188357281469955987886660924413532131,
+            "inc": 8575131216694316707454211715324283185
+          },
+          "has_uint32": 0,
+          "uinteger": 758145379
+        }
+      }
+    }
+  },
+  "diagnostic_batch": {
+    "seed": 20261102,
+    "candidate_count": 512,
+    "foreground": 256,
+    "background": 256,
+    "row_indices_sha256": "c527a124842816a3efb929e0498334c8d8d011be4f971f229f3085639b149dc3",
+    "source": "train_fit cache only",
+    "small_count": 69,
+    "tiny_count": 0,
+    "grouping_fixed_before_dev": true
+  },
+  "bootstrap": {
+    "unit": "image",
+    "replicates": 1000,
+    "seed": 20261102,
+    "same_precomputed_draws_across_seeds": true,
+    "duplicate_sample_ids": "unique bootstrap copy ordinal"
+  },
+  "promotion_gate": {
+    "both_seeds_both_AP_non_decreasing": true,
+    "at_least_same_AP_improves_ge_0_002_each_seed_and_each_CI_low_gt_0": true,
+    "both_seeds_AP75_non_decreasing": true,
+    "TP_at_FP100_and_200_non_decreasing": true,
+    "floor030_small_tiny_boundary_non_decreasing": true,
+    "common_GT_normalized_mean_P95_P99_non_increasing": true,
+    "final_illegal_geometry_non_increasing": true
+  },
+  "resource": {
+    "gpu_active_hours_hard_cap": 4,
+    "no_detector_training": true
+  },
+  "forbidden": {
+    "test300_images_predictions_gt": true,
+    "history_validation_or_locked_confirm": true,
+    "submission_or_upload": true,
+    "additional_beta_or_hyperparameter_search": true
+  },
+  "source_hashes": {
+    "<PROJECT_ROOT>\\DMKPD-V9-20261009\\train\\A_main\\epoch_12.pt": "89cfc3b044db37c4232cbc6f9e839b0b40bbe3fe2beb51a2e250cc3e47633a88",
+    "<PROJECT_ROOT>\\DMKPD-V10-20261010\\train\\geometry_seed20261010\\epoch_10.pt": "5fa3bc7156c419799db5c7592955a28e05ca8602e9a4cfb7fdb2b1b755c67abf",
+    "<PROJECT_ROOT>\\07_第5版_R6正式复跑_20261006\\inputs\\split_manifest_r2_internal.csv": "c4a5928dc1a70fcdebef9188031fa45a5df2908b44014ac36171cf025239bb19",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\FINAL_REPORT.md": "fa121e6939d0427f7abf6c9ef25245d53d1aa20903d748904cbae316d58ab61e",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\PLAN.md": "e5fd0b889dedb24567d9e92a223035208563713c06ab7d76da42d107d4111d2c",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\RUN_CONFIG.json": "c057735db2391a0b95fd785b3dcb2e24859ff97d34f6cb3219b0668256a488a3",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\PROVENANCE.json": "a87f8567a7ce6e087b434c1ddbf99550977431188ef8989d72c6cfe62bc5b6a6",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\code\\train_v31.py": "ce2f2b694c2f672be6b6f185fb6d33e6e4c436aa87a4df5ff50a1b2950034f75",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\code\\v31_core.py": "5428fbb768b0d50546451e92b0191d005ec306d3e5849c56491ec835c913a081",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\code\\evaluate_v31.py": "a0e151e6e04ba0d48fef671a521f9546cd7a7c48c67f88bed895c08fa67c39fc",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\code\\checks_v31.py": "5f0e3f6b908759310d53d06ee362f7c63ed8f7cbd034f30018f7368bd9f2260d",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\diagnostics\\CACHE_INTEGRITY.json": "1b5aab53b909d14aab8264c5f4532b90407d99bbbbc3ba7f48baaeee04fdd38f",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\DATA_INPUT_HASHES.json": "a2ed5029f52bc74e4f9344f03b35ba1cb3ff22c0407e124aca84bbc2ae7ee078",
+    "<PROJECT_ROOT>\\DMKPD-V28-V10亚像素解码-配对复核\\RESULTS.json": "35b74f08d636fe8cb3682aa37dc7a270771740107535e56032d374b867cca6a0",
+    "<PROJECT_ROOT>\\DMKPD-V28-V10亚像素解码-配对复核\\results\\B_predictions.json": "8e837069ec492b68622845de753d59c60d8402bdd5f283effa1dc5354c8c1fe6"
+  },
+  "code_hashes": {
+    "code\\analyze_v32.py": "d114ccafe0915b69e8210674c552258167251016d08b0d4240540585a9b22167",
+    "code\\checks_v32.py": "4c00db319540d8120b973d6e6367fcdb725926d35e75e8d6468f4c2ea4fcd00e",
+    "code\\evaluate_v31.py": "2984ba4d2ba501938edf428a9cbb15d7db1394ad71d71bbd8bb39c59238ee2cc",
+    "code\\freeze_v32.py": "0707dc0115a6e68844829a85bf48c6ab50438d907d8f68702e95f204fb5cd496",
+    "code\\prepare_v32.py": "c43dcde29beef67913e282190c2867dd392ff6ac74ae13571fe9972fef81bb89",
+    "code\\source_refs\\run_v28_fixed.py": "f1d8939a7f26d5970a1185df1a27a3a54856a2f33e60f491caa797cfca4ae7c0",
+    "code\\source_refs\\run_v30_guard_reference.py": "e38cdcea3e45af3d36a32543a47e875c8740d1f2f9f0afcd1e356a926d31baba",
+    "code\\source_snapshot\\metric_helpers.py": "06b6275c5788465b090681f81aff5c1da431a61b78c26576588861d0ca2cc954",
+    "code\\source_snapshot\\v10_rank.py": "27819a4d9daba17e3fd23b72f3b893bb62c30ef037c7e93c1d1be07f83d6297a",
+    "code\\source_snapshot\\v9_evaluate.py": "8e380455b8f1e53f8fc9d681d4cb7e45bce5d7cd4ea1a9940af67ff2ab6c0dd3",
+    "code\\source_snapshot\\v9_geometry.py": "456434087130696ad4443f45d6bbf355e2106059f6be85d354d4ee90542a0745",
+    "code\\source_snapshot\\v9_model.py": "49933acdbbfec2d769f61130970e849af82e673fd5859fdef2c7c7888245c793",
+    "code\\source_snapshot\\v9_train.py": "77327e1890d92c34773ef9612fb2c5bf69a8cbb073e44ec068503937bb6834af",
+    "code\\train_v32.py": "db0e75e5cb1c8512fcbfe42c7f0e1c7c71dd0dfff17a5fb57970afd046c7b05e",
+    "code\\v31_core.py": "09caa51a9929aa8d46424849104a7672664748d3246e6131a007f642db9d39bb"
+  },
+  "environment": {
+    "python": "3.12.14 | packaged by Anaconda, Inc. | (main, Aug 27 2026, 14:37:13) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "torch": "2.11.0+cu128",
+    "torch_cuda": "12.8",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 5060",
+    "cudnn": 91900,
+    "matmul_tf32": false,
+    "cudnn_tf32": true,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false
+  }
+}

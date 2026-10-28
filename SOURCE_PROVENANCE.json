@@ -1,0 +1,117 @@
+[
+  {
+    "file": "src/v9_model.py",
+    "source_sha256": "49933acdbbfec2d769f61130970e849af82e673fd5859fdef2c7c7888245c793",
+    "changes": "Environment-configurable paths; original algorithm preserved."
+  },
+  {
+    "file": "src/v9_geometry.py",
+    "source_sha256": "456434087130696ad4443f45d6bbf355e2106059f6be85d354d4ee90542a0745",
+    "changes": "Environment-configurable paths; original algorithm preserved."
+  },
+  {
+    "file": "src/v9_train.py",
+    "source_sha256": "77327e1890d92c34773ef9612fb2c5bf69a8cbb073e44ec068503937bb6834af",
+    "changes": "Environment-configurable paths; original algorithm preserved."
+  },
+  {
+    "file": "src/v9_evaluate.py",
+    "source_sha256": "8e380455b8f1e53f8fc9d681d4cb7e45bce5d7cd4ea1a9940af67ff2ab6c0dd3",
+    "changes": "Environment-configurable paths; original algorithm preserved."
+  },
+  {
+    "file": "src/metric_helpers.py",
+    "source_sha256": "06b6275c5788465b090681f81aff5c1da431a61b78c26576588861d0ca2cc954",
+    "changes": "Environment-configurable paths; original algorithm preserved."
+  },
+  {
+    "file": "src/v10_rank.py",
+    "source_sha256": "27819a4d9daba17e3fd23b72f3b893bb62c30ef037c7e93c1d1be07f83d6297a",
+    "changes": "Environment-configurable paths; original algorithm preserved."
+  },
+  {
+    "file": "research/v31/collect_v31.py",
+    "source_sha256": "8f1ebec19cbba0c4e7bc3f99141be28fc1ad92fecfd5f8a7b3306cabac12ab7c",
+    "changes": "Historical absolute project root redacted; research reference, not portable CLI."
+  },
+  {
+    "file": "research/v31/validate_cache_v31.py",
+    "source_sha256": "820e399c73d4301650580115760938ff4eeee38623b7e155fa1f544e2be725d8",
+    "changes": "Historical absolute project root redacted; research reference, not portable CLI."
+  },
+  {
+    "file": "research/v31/train_v31.py",
+    "source_sha256": "ce2f2b694c2f672be6b6f185fb6d33e6e4c436aa87a4df5ff50a1b2950034f75",
+    "changes": "Historical absolute project root redacted; research reference, not portable CLI."
+  },
+  {
+    "file": "research/v31/freeze_v31_config.py",
+    "source_sha256": "fb98d5ec252e4056232168dcbe1bfe2e6f358dc197a30fd1aad02a6721a2b783",
+    "changes": "Historical absolute project root redacted; research reference, not portable CLI."
+  },
+  {
+    "file": "research/v31/v31_core.py",
+    "source_sha256": "5428fbb768b0d50546451e92b0191d005ec306d3e5849c56491ec835c913a081",
+    "changes": "Historical absolute project root redacted; research reference, not portable CLI."
+  },
+  {
+    "file": "research/v32/train_v32.py",
+    "source_sha256": "db0e75e5cb1c8512fcbfe42c7f0e1c7c71dd0dfff17a5fb57970afd046c7b05e",
+    "changes": "Historical absolute project root redacted; research reference, not portable CLI."
+  },
+  {
+    "file": "research/v32/prepare_v32.py",
+    "source_sha256": "c43dcde29beef67913e282190c2867dd392ff6ac74ae13571fe9972fef81bb89",
+    "changes": "Historical absolute project root redacted; research reference, not portable CLI."
+  },
+  {
+    "file": "research/v32/freeze_v32.py",
+    "source_sha256": "0707dc0115a6e68844829a85bf48c6ab50438d907d8f68702e95f204fb5cd496",
+    "changes": "Historical absolute project root redacted; research reference, not portable CLI."
+  },
+  {
+    "file": "research/v32/evaluate_v31.py",
+    "source_sha256": "2984ba4d2ba501938edf428a9cbb15d7db1394ad71d71bbd8bb39c59238ee2cc",
+    "changes": "Historical absolute project root redacted; research reference, not portable CLI."
+  },
+  {
+    "file": "research/v32/v31_core.py",
+    "source_sha256": "09caa51a9929aa8d46424849104a7672664748d3246e6131a007f642db9d39bb",
+    "changes": "Historical absolute project root redacted; research reference, not portable CLI."
+  },
+  {
+    "file": "research/v31/checks_v31.py",
+    "source_sha256": "5f0e3f6b908759310d53d06ee362f7c63ed8f7cbd034f30018f7368bd9f2260d",
+    "changes": "Historical absolute project root redacted; reference source."
+  },
+  {
+    "file": "research/v31/evaluate_v31.py",
+    "source_sha256": "a0e151e6e04ba0d48fef671a521f9546cd7a7c48c67f88bed895c08fa67c39fc",
+    "changes": "Historical absolute project root redacted; reference source."
+  },
+  {
+    "file": "research/v31/finalize_v31.py",
+    "source_sha256": "37859f5cc9d6804cfa93acf32fd12334e882b615c74c81cec73ba964d1d0f3cd",
+    "changes": "Historical absolute project root redacted; reference source."
+  },
+  {
+    "file": "research/v31/preflight_v31.py",
+    "source_sha256": "9988c808b45047c8001e12fda03d4ce3fdf7a1a0a0e1102a72e08fda93ec1453",
+    "changes": "Historical absolute project root redacted; reference source."
+  },
+  {
+    "file": "research/v32/analyze_v32.py",
+    "source_sha256": "29a0adaad269c6f6affcd9777e79f68312b59e0fd0363471f1dc1ccaab996e70",
+    "changes": "Historical absolute project root redacted; reference source."
+  },
+  {
+    "file": "research/v32/checks_v32.py",
+    "source_sha256": "4c00db319540d8120b973d6e6367fcdb725926d35e75e8d6468f4c2ea4fcd00e",
+    "changes": "Historical absolute project root redacted; reference source."
+  },
+  {
+    "file": "research/v32/finalize_v32.py",
+    "source_sha256": "9f3a444787ac69e600b5aaaf8801ea9011f91160f36fd1e79f991ac66bfdbee6",
+    "changes": "Historical absolute project root redacted; reference source."
+  }
+]

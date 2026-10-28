@@ -1,0 +1,162 @@
+{
+  "experiment": "DMKPD V31 learned continuous corner residual head",
+  "frozen_at_local": "2026-10-25T17:50:05+0800",
+  "hypothesis": "freeze V28 detector/keypoint and V10 quality route; train one candidate-specific spatial RoI residual head",
+  "arms": {
+    "A": "exact frozen V28 output",
+    "B": "V28 plus one learned bounded corner residual head with V30 candidate-level validity/permutation guard"
+  },
+  "fixed_main_epoch": 3,
+  "seed": 20261031,
+  "model": {
+    "detector_path": "<PROJECT_ROOT>\\DMKPD-V9-20261009\\train\\A_main\\epoch_12.pt",
+    "detector_sha256": "89cfc3b044db37c4232cbc6f9e839b0b40bbe3fe2beb51a2e250cc3e47633a88",
+    "quality_head_path": "<PROJECT_ROOT>\\DMKPD-V10-20261010\\train\\geometry_seed20261010\\epoch_10.pt",
+    "quality_head_sha256": "5fa3bc7156c419799db5c7592955a28e05ca8602e9a4cfb7fdb2b1b755c67abf",
+    "normalization": "FrozenBatchNorm2d",
+    "expected_frozen_batchnorm_count": 53
+  },
+  "data": {
+    "manifest_path": "<PROJECT_ROOT>\\07_第5版_R6正式复跑_20261006\\inputs\\split_manifest_r2_internal.csv",
+    "manifest_sha256": "c4a5928dc1a70fcdebef9188031fa45a5df2908b44014ac36171cf025239bb19",
+    "train_fit_images": 7731,
+    "train_fit_gt": "not counted in the frozen config",
+    "dev_images": 859,
+    "dev_gt": 1981,
+    "supervision_annotations": "train_fit only",
+    "dev_role": "evaluation only",
+    "validation_locked_confirm_test300_read": false
+  },
+  "new_head": {
+    "input_roi_shape": [
+      256,
+      14,
+      14
+    ],
+    "adaptive_spatial_pool": [
+      4,
+      4
+    ],
+    "corner_coordinate_features": 8,
+    "layers": [
+      4104,
+      128,
+      64,
+      8
+    ],
+    "activation": "ReLU",
+    "output_init": "zero weight and bias",
+    "parameters": 534216,
+    "max_roi_fraction_per_axis": 0.05,
+    "output_coordinate_frame": "raw keypoint channel order, original pixels"
+  },
+  "training": {
+    "epochs": 3,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "microbatch": 256,
+    "gradient_accumulation": 2,
+    "effective_batch_max": 512,
+    "background_per_image_cap": "min(background_count, foreground_count)",
+    "augmentation": "none",
+    "loss": "mean SmoothL1 foreground + 0.1 * mean SmoothL1 background-to-zero"
+  },
+  "inference": {
+    "input_short_side": 768,
+    "max_long_side": 1024,
+    "dtype": "FP32",
+    "batch_size": 1,
+    "pre_keypoint_candidate_budget": 100,
+    "polygon_nms_iou": 0.3,
+    "final_output_cap": 100,
+    "primary_AP_score_floor": null,
+    "working_point_floors": [
+      0.3,
+      0.45
+    ],
+    "quality_features_from_unmodified_V10_corners": true,
+    "quality_score_formula_unchanged": true
+  },
+  "evaluation": {
+    "A_reference_local_oks_ap50_95": 0.7905144222533753,
+    "A_reference_polygon_ap50_95": 0.8181647489075556,
+    "A_reference_floor030": {
+      "tp": 1767,
+      "fp": 198,
+      "fn": 214,
+      "small_detected": 612,
+      "small_targets": 699,
+      "tiny_detected": 20,
+      "tiny_targets": 31,
+      "boundary_detected": 23,
+      "boundary_targets": 26
+    },
+    "bootstrap": {
+      "unit": "image",
+      "replicates": 1000,
+      "seed": 20261031
+    },
+    "promotion_rule": "frozen in PLAN.md; do full online dev only if every gate passes"
+  },
+  "online_collection_equivalence": {
+    "candidate_id_exact": true,
+    "box_and_native_corner_tolerance_px": 0.0001,
+    "fit_state_exact": true,
+    "refined_corner_difference": "recorded as numerical diagnostic; not used to select candidates or alter A/B cache evaluation",
+    "numerical_addendum": "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\NUMERICAL_COLLECTION_ADDENDUM.md"
+  },
+  "resource": {
+    "gpu_active_hours_hard_cap": 8,
+    "device": "NVIDIA GeForce RTX 5060"
+  },
+  "source_hashes": {
+    "<PROJECT_ROOT>\\DMKPD-V9-20261009\\train\\A_main\\epoch_12.pt": "89cfc3b044db37c4232cbc6f9e839b0b40bbe3fe2beb51a2e250cc3e47633a88",
+    "<PROJECT_ROOT>\\DMKPD-V10-20261010\\train\\geometry_seed20261010\\epoch_10.pt": "5fa3bc7156c419799db5c7592955a28e05ca8602e9a4cfb7fdb2b1b755c67abf",
+    "<PROJECT_ROOT>\\07_第5版_R6正式复跑_20261006\\inputs\\split_manifest_r2_internal.csv": "c4a5928dc1a70fcdebef9188031fa45a5df2908b44014ac36171cf025239bb19",
+    "<PROJECT_ROOT>\\DMKPD-V28-V10亚像素解码-配对复核\\FINAL_REPORT.md": "de79047981ad47ccef8234322466ff064a620f1b8679a5ae28f00a1868726405",
+    "<PROJECT_ROOT>\\DMKPD-V28-V10亚像素解码-配对复核\\PREREGISTRATION.md": "9169b844fc513ec9e1fe61f3a7bbd3f436f644c18c2d7dac2a821f5c51d159c4",
+    "<PROJECT_ROOT>\\DMKPD-V28-V10亚像素解码-配对复核\\RUN_CONFIG.json": "c785b9fe60d38ba560ee6f5c32f7c1727441fa3bf54e156221b099887acd2c2e",
+    "<PROJECT_ROOT>\\DMKPD-V28-V10亚像素解码-配对复核\\RESULTS.json": "35b74f08d636fe8cb3682aa37dc7a270771740107535e56032d374b867cca6a0",
+    "<PROJECT_ROOT>\\DMKPD-V28-V10亚像素解码-配对复核\\RUNTIME.json": "ff58248283fedab11d47447c24b1f7626c21fa052963b3842b4f185832786ec7",
+    "<PROJECT_ROOT>\\DMKPD-V28-V10亚像素解码-配对复核\\results\\B_predictions.json": "8e837069ec492b68622845de753d59c60d8402bdd5f283effa1dc5354c8c1fe6",
+    "<PROJECT_ROOT>\\DMKPD-V28-V10亚像素解码-配对复核\\code\\run_v28_fixed.py": "f1d8939a7f26d5970a1185df1a27a3a54856a2f33e60f491caa797cfca4ae7c0",
+    "<PROJECT_ROOT>\\DMKPD-V28-V10亚像素解码-配对复核\\code\\source_snapshot\\v10_rank.py": "27819a4d9daba17e3fd23b72f3b893bb62c30ef037c7e93c1d1be07f83d6297a",
+    "<PROJECT_ROOT>\\DMKPD-V28-V10亚像素解码-配对复核\\code\\source_snapshot\\v9_geometry.py": "456434087130696ad4443f45d6bbf355e2106059f6be85d354d4ee90542a0745",
+    "<PROJECT_ROOT>\\DMKPD-V28-V10亚像素解码-配对复核\\code\\source_snapshot\\v9_evaluate.py": "8e380455b8f1e53f8fc9d681d4cb7e45bce5d7cd4ea1a9940af67ff2ab6c0dd3",
+    "<PROJECT_ROOT>\\DMKPD-V28-V10亚像素解码-配对复核\\code\\source_snapshot\\metric_helpers.py": "1e8e011c42ab1db243ec5cb49947a1c51ab4fe44c24d3ddcfb0cecd3a30b3cf9",
+    "<PROJECT_ROOT>\\DMKPD-V30-V28受限单轴修正\\FINAL_REPORT.md": "3d7739e7237bc82b0e3c3db20b4374f90df879fc7572a583fea0994814df7988",
+    "<PROJECT_ROOT>\\DMKPD-V30-V28受限单轴修正\\PLAN.md": "4761a50ca8a161368984bfdd49b35cbf925dfa275a084f4174d777153af92d28",
+    "<PROJECT_ROOT>\\DMKPD-V30-V28受限单轴修正\\RUN_CONFIG.json": "5ab3f0b9d920cf7a4cec9e5b652f6c804e8e91dd2f4e6d9865ebd8acb94ee24f",
+    "<PROJECT_ROOT>\\DMKPD-V30-V28受限单轴修正\\code\\run_v30.py": "e38cdcea3e45af3d36a32543a47e875c8740d1f2f9f0afcd1e356a926d31baba",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\diagnostics\\RESOURCE_PREFLIGHT.json": "ca6e72902af0a4594947af269517df4d218674fbf9937159005352e8f4300195",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\logs\\IMPLEMENTATION_REPAIR.json": "1442b5eee3da24b4b43c657695d30c4778a221735d7f3844b536e50557930755",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\PLAN.md": "e5fd0b889dedb24567d9e92a223035208563713c06ab7d76da42d107d4111d2c",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\METHOD_REFERENCES.md": "010462d1bb5dd6ac6edf9c19b5a7f76e0bbc385a42dbd4f145c254a80e1698de",
+    "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\NUMERICAL_COLLECTION_ADDENDUM.md": "46c9ed7d892ccc4fa7669873d72e86ec07e1b535e5e2ed11762b2e28a926614f"
+  },
+  "v31_code_hashes": {
+    "code\\checks_v31.py": "5f0e3f6b908759310d53d06ee362f7c63ed8f7cbd034f30018f7368bd9f2260d",
+    "code\\collect_v31.py": "8f1ebec19cbba0c4e7bc3f99141be28fc1ad92fecfd5f8a7b3306cabac12ab7c",
+    "code\\evaluate_v31.py": "52f1eb079819409aabce2e5b0b9f2a2cfd0d89b4ec0f2c7606e589c07a6fc102",
+    "code\\freeze_v31_config.py": "fb98d5ec252e4056232168dcbe1bfe2e6f358dc197a30fd1aad02a6721a2b783",
+    "code\\preflight_v31.py": "9988c808b45047c8001e12fda03d4ce3fdf7a1a0a0e1102a72e08fda93ec1453",
+    "code\\source_refs\\run_v28_fixed.py": "f1d8939a7f26d5970a1185df1a27a3a54856a2f33e60f491caa797cfca4ae7c0",
+    "code\\source_refs\\run_v30_guard_reference.py": "e38cdcea3e45af3d36a32543a47e875c8740d1f2f9f0afcd1e356a926d31baba",
+    "code\\source_snapshot\\metric_helpers.py": "1e8e011c42ab1db243ec5cb49947a1c51ab4fe44c24d3ddcfb0cecd3a30b3cf9",
+    "code\\source_snapshot\\v10_rank.py": "27819a4d9daba17e3fd23b72f3b893bb62c30ef037c7e93c1d1be07f83d6297a",
+    "code\\source_snapshot\\v9_evaluate.py": "8e380455b8f1e53f8fc9d681d4cb7e45bce5d7cd4ea1a9940af67ff2ab6c0dd3",
+    "code\\source_snapshot\\v9_geometry.py": "456434087130696ad4443f45d6bbf355e2106059f6be85d354d4ee90542a0745",
+    "code\\source_snapshot\\v9_model.py": "49933acdbbfec2d769f61130970e849af82e673fd5859fdef2c7c7888245c793",
+    "code\\source_snapshot\\v9_train.py": "77327e1890d92c34773ef9612fb2c5bf69a8cbb073e44ec068503937bb6834af",
+    "code\\train_v31.py": "b4acc5166146c46424f1442692f488cb5ce169b6f6051cc075341ddca3b3043a",
+    "code\\v31_core.py": "5428fbb768b0d50546451e92b0191d005ec306d3e5849c56491ec835c913a081",
+    "code\\validate_cache_v31.py": "820e399c73d4301650580115760938ff4eeee38623b7e155fa1f544e2be725d8"
+  },
+  "data_input_hashes_path": "<PROJECT_ROOT>\\DMKPD-V31-V28学习式角点残差\\DATA_INPUT_HASHES.json",
+  "data_input_hashes_sha256": "a2ed5029f52bc74e4f9344f03b35ba1cb3ff22c0407e124aca84bbc2ae7ee078",
+  "external_method_access_date": "2026-10-25",
+  "test300_read": false,
+  "submission_created": false,
+  "upload": false
+}
